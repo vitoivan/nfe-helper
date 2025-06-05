@@ -40,7 +40,6 @@ export class AccessKey {
 		return this._dv;
 	}
 	private withoutDV(): string {
-		console.log(this)
 		return `${this.cUF.code}${this.year}${this.month}${this.cnpj}${this.mod.code}${this.serie}${this.nNF}${this.tpEmis.code}${this.cNF}`;
 	}
 
@@ -89,8 +88,6 @@ export class AccessKey {
 		if (!cuf || !mod || !tpEmis) {
 			throw new Error("Invalid access key");
 		}
-
-		console.log({ cuf, cnpj, mod, serie, nNF, tpEmis, cNF, year, month });
 
 		return new AccessKey(cuf, cnpj, mod, serie, nNF, tpEmis, cNF, year, month);
 	}
