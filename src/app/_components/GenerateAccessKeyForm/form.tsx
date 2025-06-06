@@ -35,7 +35,7 @@ import { generateSerie } from "@/lib/accesskey/serie";
 import { generateNNF } from "@/lib/accesskey/nNF";
 import { generateCNF } from "@/lib/accesskey/cNF";
 import QRCode from "react-qr-code";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { downloadSVG } from "@/lib/utils";
 
 export const formSchema = z.object({
