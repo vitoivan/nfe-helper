@@ -356,7 +356,7 @@ export function GenerateAccessKeyForm() {
       {qrCodeShowing && (
         <div className="flex flex-col gap-4 mt-8">
           <h4>QrCode</h4>
-          <Input className="w-full" placeholder="url do qrcode" value={qrcodeURL} onChange={e => setQrcodeURL(e.target.value)} onPaste={e => setQrcodeURL(e.clipboardData.getData('text'))} />
+          <Input className="w-full" placeholder="url do qrcode" value={qrcodeURL} onChange={e => setQrcodeURL(e.target.value)} />
           <div className="flex gap-2">
             <QRCode value={qrcodeURL} id="qrcode" />
             <Button
