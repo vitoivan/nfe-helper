@@ -57,7 +57,7 @@ export const formSchema = z.object({
 export function GenerateAccessKeyForm() {
 
   const [qrcodeURL, setQrcodeURL] = useState<string>("")
-  const [qrCodeShowing, setQrCodeShowing] = useState<boolean>(false)
+  const [qrCodeShowing, setQrCodeShowing] = useState<boolean>(true)
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -71,7 +71,7 @@ export function GenerateAccessKeyForm() {
   })
 
   function handleDownloadQRCode() {
-    downloadSVG("qrcode", "qrcode.svg")
+    downloadSVG("qrcode")
   }
 
 
