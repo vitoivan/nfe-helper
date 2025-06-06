@@ -23,7 +23,7 @@ import {
   SelectItem,
 } from "@/components/ui/select";
 import { clearCNPJ, generateCNPJ, prettifyCNPJ, validateCNPJ } from "@/lib/accesskey/cnpj";
-import { Check, Copy, QrCode, RefreshCcw } from "lucide-react";
+import { Check, Copy, Download, QrCode, RefreshCcw } from "lucide-react";
 import { toast } from "sonner";
 import { useApendCNPJMask } from "@/lib/custom-hooks/use-append-cnpj-mask";
 import { mods } from "@/lib/accesskey/mod";
@@ -35,7 +35,8 @@ import { generateSerie } from "@/lib/accesskey/serie";
 import { generateNNF } from "@/lib/accesskey/nNF";
 import { generateCNF } from "@/lib/accesskey/cNF";
 import QRCode from "react-qr-code";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { downloadSVG } from "@/lib/utils";
 
 export const formSchema = z.object({
   cnpj: z.string().refine(v => validateCNPJ(v), {
@@ -68,6 +69,11 @@ export function GenerateAccessKeyForm() {
       accessKey: "",
     },
   })
+
+  function handleDownloadQRCode() {
+    downloadSVG("qrcode", "qrcode.svg")
+  }
+
 
   function showQrCode() {
     const ak = form.getValues('accessKey')
@@ -348,10 +354,18 @@ export function GenerateAccessKeyForm() {
 
 
       {qrCodeShowing && (
-        <div className="flex flex-col gap-2 mt-8">
+        <div className="flex flex-col gap-4 mt-8">
           <h4>QrCode</h4>
           <Input className="w-full" placeholder="url do qrcode" value={qrcodeURL} onChange={e => setQrcodeURL(e.target.value)} onPaste={e => setQrcodeURL(e.clipboardData.getData('text'))} />
-          <QRCode value={qrcodeURL} />
+          <div className="flex gap-2">
+            <QRCode value={qrcodeURL} id="qrcode" />
+            <Button
+              onClick={handleDownloadQRCode}
+              type="button"
+            >
+              <Download />
+            </Button>
+          </div>
         </div>
       )}
     </div>

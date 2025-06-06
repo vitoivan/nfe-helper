@@ -20,7 +20,7 @@ function Header() {
       <h1
         className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white md:text-4xl"
       >
-        Gerador de chave de acesso
+        NFE Helper
       </h1>
     </header>
   );
